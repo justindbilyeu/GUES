@@ -1,0 +1,229 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\geometry{margin=1in}
+
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+
+\definecolor{speculativecolor}{rgb}{0.6,0.1,0.1}
+\newcommand{\speculative}[1]{\textcolor{speculativecolor}{\textit{[Speculative: #1]}}}
+
+\title{
+  \textbf{Geometric Unification through Emergent Structure}\\
+  \large A Theoretical Conjecture on Information Flow, Symmetry, and Cosmic Expansion\\
+  \vspace{0.5em}
+  \normalsize \textit{GUES v0.1 — Evidence Level E1}
+}
+
+\author{
+  Justin D. Bilyeu\\
+  \small Independent Researcher\\
+  \small \href{https://github.com/justindbilyeu/GUES}{github.com/justindbilyeu/GUES}
+}
+
+\date{June 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose a theoretical conjecture — designated GUES (Geometric Unification through Emergent Structure) — that spacetime geometry is not a fundamental substrate but an emergent property of information flow structure. Taking information flow as given, we argue that: (1) geometry emerges from the structure of information flow and would manifest measurable deviations from smooth manifold behavior at information-dense boundaries; (2) the fundamental forces correspond to distinct symmetry configurations within that emergent geometry, suggesting their unification requires identifying the higher-dimensional geometric object of which the Standard Model gauge groups are faces; and (3) black holes function as information-to-geometry transducers whose cumulative geometric output is a candidate mechanism for observed cosmic expansion, distinguishable in principle from vacuum energy. This paper is explicitly labeled E1 — structured speculation with proposed falsification paths. It makes no claim beyond connecting established physics to a coherent alternative framing and identifying what would need to be true, and what would need to be measured, for that framing to advance.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+%-----------------------------------------------------------
+\section{Introduction}
+
+General Relativity established that gravity is geometry. The presence of mass-energy curves spacetime, and what we experience as gravitational attraction is motion along geodesics in that curved space. This was not a description of gravity acting through geometry — it was the replacement of gravity-as-force with geometry-as-physics.
+
+That move was radical and it worked. But it left a question open that has not been closed in the century since: \textit{is the geometry fundamental, or does it emerge from something deeper?}
+
+A parallel program, developed independently across thermodynamics, quantum information, and quantum gravity, has been assembling evidence for the latter position. Jacobson showed in 1995 that the Einstein field equations follow from thermodynamics of local spacetime patches — gravity as an equation of state, not a fundamental law \cite{jacobson1995}. Verlinde extended this in 2010 and 2016, deriving Newtonian gravity and its relativistic extension from entropic considerations on holographic screens \cite{verlinde2010, verlinde2016}. Maldacena and Susskind proposed in 2013 that quantum entanglement and spacetime geometry are equivalent descriptions of the same structure \cite{maldacena2013}.
+
+The thread connecting these results is information. Not information as metaphor, but information in the technical sense: entropy, distinguishability, causal structure. The proposal emerging from this thread is that geometry is what information flow looks like when you project it onto the scales we measure.
+
+This paper takes that proposal seriously and asks what follows from it — specifically for the fundamental forces and for the observed acceleration of cosmic expansion.
+
+We are explicit about what this is. GUES is a conjecture at Evidence Level E1: structured speculation with falsification paths proposed but not yet tested. Nothing here has passed a Gate 3 or above under the governing methodology \cite{charter}. The value of this document is not proof — it is the honest structuring of an intuition that connects to established physics at multiple points and deserves rigorous examination.
+
+%-----------------------------------------------------------
+\section{Foundational Framing}
+
+\subsection{Information Flow as Given}
+
+A boundary condition of this conjecture: we treat information flow as given. We do not ask what generates distinguishability, what produces initial conditions, or what is upstream of the informational substrate. These are legitimate questions. They are not questions this paper attempts to answer.
+
+This is the same move thermodynamics makes. Entropy is given. The second law describes what follows from it. The source of the asymmetry is a separate inquiry.
+
+By taking information flow as given, we make the conjecture tractable and falsifiable at the level we are working. Claims that require specifying the source of information are deferred to other work.
+
+\subsection{The Geometry-Information Relationship}
+
+Let $\mathcal{I}$ denote an information flow structure — a manifold of distinguishable states with causal ordering and entropy gradients. We propose:
+
+\begin{conjecture}[Emergent Geometry]
+Spacetime geometry $g_{\mu\nu}$ is not fundamental but emerges from the structure of $\mathcal{I}$. Specifically, the metric at any point is determined by the local entropy gradient structure of the information flow, such that:
+\begin{equation}
+G_{\mu\nu} = \kappa \, T^{(\mathcal{I})}_{\mu\nu}
+\end{equation}
+where $T^{(\mathcal{I})}_{\mu\nu}$ is the stress-energy tensor of the information flow field, and $G_{\mu\nu}$ is the Einstein tensor of the emergent metric.
+\end{conjecture}
+
+This is not new mathematics. It is a reframing of Jacobson's result \cite{jacobson1995}: the Einstein equations already follow from thermodynamic considerations. What we add is the explicit identification of information flow — rather than local Rindler horizons — as the generating structure.
+
+\textbf{Falsification path (E1):} If geometry is emergent from information flow rather than fundamental, deviations from smooth Lorentzian manifold behavior should appear at regions of maximum entropy gradient — near black hole horizons, in early-universe conditions, at the Planck scale. Current measurements from LIGO gravitational wave observations and Event Horizon Telescope imaging constrain the smoothness of spacetime near horizons. A quantitative prediction of the deviation magnitude and scale is required to advance this claim to E2.
+
+%-----------------------------------------------------------
+\section{Forces as Symmetry Structures in Emergent Geometry}
+
+\subsection{The Standard Model Gauge Groups}
+
+The fundamental forces of the Standard Model correspond to gauge symmetry groups:
+\begin{itemize}
+  \item Electromagnetism: $U(1)$
+  \item Weak force: $SU(2)$
+  \item Strong force: $SU(3)$
+\end{itemize}
+
+These are not arbitrary choices. They are the symmetry structures that, when gauged, produce the observed interactions. The question of why these specific groups — and not others — is not answered by the Standard Model itself. It is a boundary condition, not a result.
+
+\subsection{Forces as Geometric Cross-Sections}
+
+\begin{conjecture}[Force Symmetries as Geometry]
+The gauge groups $U(1)$, $SU(2)$, and $SU(3)$ are not independently fundamental. They are cross-sections — faces — of a single higher-dimensional geometric object $\mathcal{G}$ within the emergent geometry. Different dimensional projections of $\mathcal{G}$ yield different gauge symmetry structures.
+\end{conjecture}
+
+The intuition is geometric and can be stated plainly: a triangle, square, and pentagon are not three unrelated objects. They can be faces of a single higher-dimensional solid. The gauge groups of the Standard Model may stand in an analogous relationship.
+
+This is not without precedent. The original Kaluza-Klein program showed that adding one spatial dimension to GR yields electromagnetism automatically \cite{kaluza1921, klein1926}. String theory and M-theory extend this program. The specific higher-dimensional object $\mathcal{G}$ is not identified in this paper.
+
+\speculative{The identification of $\mathcal{G}$ is the central open problem for this conjecture. Candidate structures include $E_8$, $G_2$, and novel objects arising from the information-flow substrate. This requires mathematical work beyond the scope of v0.1.}
+
+\textbf{Falsification path (E1):} If the gauge groups are faces of a single geometric object, there should exist symmetry-breaking pathways connecting them — not just at high energy (as in Grand Unified Theories) but through geometric transitions in the emergent structure. The electroweak unification already demonstrates that $U(1)$ and $SU(2)$ merge at sufficient energy. The extension to $SU(3)$ and the identification of the containing object $\mathcal{G}$ is the testable claim.
+
+%-----------------------------------------------------------
+\section{Black Holes as Information-to-Geometry Transducers}
+
+\subsection{The Standard Picture and Its Gap}
+
+In standard cosmology, black holes are endpoints — regions where information falls in and, via Hawking radiation, slowly leaks out as thermal noise \cite{hawking1974, bekenstein1973}. The information paradox — whether information is truly lost — remains unresolved.
+
+The holographic principle, encoded in the Bekenstein-Hawking entropy formula:
+\begin{equation}
+S_{BH} = \frac{k_B c^3}{4 G \hbar} A
+\end{equation}
+establishes that the information content of a black hole is proportional to its horizon area, not its volume. Information is encoded on the boundary, not the interior.
+
+\subsection{Geometric Output}
+
+\begin{conjecture}[Black Holes as Geometric Transducers]
+Black holes do not merely absorb information and re-emit it thermally. They function as transducers — converting high-entropy infalling information into structured low-entropy geometric output that propagates into the surrounding manifold. This geometric output is distinct from Hawking radiation and non-radiative in the electromagnetic sense.
+\end{conjecture}
+
+The proposed mechanism, at E1:
+\begin{enumerate}
+  \item Infalling matter encodes its information structure on the event horizon (holographic principle)
+  \item The extreme spacetime curvature at the horizon acts as a compression operator on that information structure
+  \item The compressed, structured information is emitted as geometric perturbations — updates to the local causal structure of spacetime
+  \item Accumulated over cosmological time and across the black hole population, these geometric emissions contribute a pressure term to the expansion of spacetime
+\end{enumerate}
+
+\speculative{Step 3 — the emission of geometric perturbations distinct from Hawking radiation — is the least specified part of this mechanism and the point most requiring mathematical development.}
+
+\subsection{Dark Energy as Accumulated Geometric Pressure}
+
+The observed acceleration of cosmic expansion is currently attributed to dark energy, parameterized as a cosmological constant $\Lambda$ in the Friedmann equations:
+\begin{equation}
+H^2 = \frac{8\pi G}{3}\rho + \frac{\Lambda}{3}
+\end{equation}
+
+The physical mechanism of $\Lambda$ is unknown. Vacuum energy calculations predict a value approximately $10^{120}$ times larger than observed — the cosmological constant problem.
+
+\begin{conjecture}[Geometric Expansion Pressure]
+The cosmological constant $\Lambda$ is not vacuum energy but accumulated geometric output from the black hole population of the observable universe. The expansion rate should correlate with black hole density distribution at cosmological scales.
+\end{conjecture}
+
+\textbf{Falsification path (E1):} If expansion is driven by geometric output from black holes, the local expansion rate should correlate with local black hole density. Regions of higher supermassive black hole density should show measurably higher local expansion rates, independent of mass distribution effects. This prediction is distinguishable in principle from $\Lambda$CDM, which predicts uniform $\Lambda$. Current data from large-scale structure surveys and black hole catalogs could in principle test this correlation.
+
+\speculative{The quantitative prediction — what correlation coefficient, at what scale, with what measurement precision — has not been specified. This is required for G1 closure under the Charter.}
+
+%-----------------------------------------------------------
+\section{Connections to Established Physics}
+
+GUES is not built in isolation. The table below maps each conjecture to its closest established physics connection and identifies the gap between them.
+
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{GUES Claim} & \textbf{Established Connection} & \textbf{Gap} \\
+\hline
+Geometry emergent from information flow & Jacobson 1995, Verlinde 2010/2016 & Specific information flow structure unspecified \\
+\hline
+Forces as symmetry faces of single object & Kaluza-Klein, GUT programs & Higher object $\mathcal{G}$ unidentified \\
+\hline
+Black holes as geometric transducers & Holographic principle, Bekenstein-Hawking & Non-radiative geometric emission mechanism unspecified \\
+\hline
+$\Lambda$ as geometric pressure & Penrose CCC, black hole thermodynamics & Quantitative prediction absent \\
+\hline
+\end{tabular}
+\end{center}
+
+%-----------------------------------------------------------
+\section{Competing Explanations}
+
+Rigorous inquiry requires explicitly considering alternatives before converging on a preferred framing.
+
+\textbf{GR + $\Lambda$CDM as sufficient:} The null hypothesis. Spacetime geometry is fundamental. The Standard Model forces are irreducibly distinct. Dark energy is vacuum energy. This framework fits existing data well. GUES must identify predictions that differ from $\Lambda$CDM, not merely reframe the same predictions differently.
+
+\textbf{String Theory / M-Theory:} Forces are already unified geometrically via compactified extra dimensions. The higher-dimensional object is already proposed (Calabi-Yau manifolds). Black holes are extensively studied in this context. GUES must specify how it extends or differs from this program, particularly regarding the information-flow substrate.
+
+\textbf{Verlinde Entropic Gravity alone:} Gravity is already emergent from entropy in Verlinde's framework without requiring the other forces to follow. What does GUES add beyond reframing Verlinde with a black hole expansion mechanism? This is the most pointed competing explanation and requires the most explicit response.
+
+%-----------------------------------------------------------
+\section{Open Questions and Next Steps}
+
+The following are the minimum open questions that must be addressed for this conjecture to advance from E1 to E2:
+
+\begin{enumerate}
+  \item \textbf{Identify $\mathcal{G}$:} What is the specific higher-dimensional geometric object whose cross-sections yield $U(1) \times SU(2) \times SU(3)$?
+
+  \item \textbf{Specify the transduction mechanism:} How exactly does a black hole convert infalling information into structured geometric output distinct from Hawking radiation?
+
+  \item \textbf{Quantify the expansion prediction:} What correlation between black hole density and local expansion rate is predicted, at what scale, measurable with what current or foreseeable instrument?
+
+  \item \textbf{Reproduce GR:} Show explicitly that the information-flow substrate reproduces the Einstein field equations at classical scales without additional assumptions.
+
+  \item \textbf{Distinguish from Verlinde:} Specify what GUES predicts that entropic gravity alone does not.
+\end{enumerate}
+
+%-----------------------------------------------------------
+\section{Conclusion}
+
+We have presented GUES — a structured conjecture at Evidence Level E1 — proposing that spacetime geometry emerges from information flow structure, that the fundamental forces are symmetry configurations within that geometry, and that black holes function as information-to-geometry transducers whose cumulative output drives cosmic expansion.
+
+This is an educated guess. The acronym is intentional.
+
+The value of this document is not its conclusions — it has none that are proven. The value is the honest structuring of an intuition that connects to established physics at multiple points, the explicit identification of where the gaps are, and the proposed paths by which those gaps could be closed or the conjecture falsified.
+
+The next version of this paper will either specify the mechanism for black hole geometric output or explain why it cannot be specified — and what that means for the conjecture's viability.
+
+%-----------------------------------------------------------
+\section*{Acknowledgments}
+
+This work emerged from a conversation about gravity, geometry, and intuition — and from the discipline of trying to make intuition honest. The Research Assistant Charter \cite{charter} provided the methodology. The ideas are older than the structure.
+
+%-----------------------------------------------------------
+\bibliographystyle{unsrt}
+\bibliography{../refs}
+
+\end{document}
