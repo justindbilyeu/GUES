@@ -144,7 +144,7 @@ Until M6 runs, the federated hypothesis and GUES are observationally equivalent 
 |---------|-----------------------------------------------|--------------|
 |June 2026|Hypothesis elevated to primary adversary       |Open          |
 |June 2026|Fiber prototype model designed as decisive test|Pending M6 run|
-|—        |M6 run                                         |Not yet       |
+|—        |M6 run                                         |single K produced non-abelian S3.       |
 |—        |Formal proof or counterexample for Null 4      |Not yet       |
 
 -----
