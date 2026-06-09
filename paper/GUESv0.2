@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GUES v0.2 — Geometric Unification through Emergent Structure</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  .header {
+    border-bottom: 2px solid #000000;
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    border: 1px solid #000000;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-revision {
+    display: inline-block;
+    border: 1px solid #000000;
+    background: #f0f0f0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+    margin-left: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: normal;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .meta {
+    font-size: 0.82rem;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+
+  .content {
+    padding: 0 1.5rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .abstract {
+    border-left: 3px solid #000000;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+
+  .abstract-label {
+    font-style: normal;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Courier New', monospace;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .toc {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .toc-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 0.75rem;
+  }
+
+  .toc ol { padding-left: 1.25rem; }
+  .toc li { margin: 0.3rem 0; font-size: 0.9rem; }
+  .toc a { color: #000000; }
+
+  section { margin: 2.5rem 0; }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #000000;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  h4 {
+    font-size: 0.95rem;
+    font-weight: bold;
+    font-style: italic;
+    margin: 1.25rem 0 0.5rem;
+  }
+
+  p { margin-bottom: 1rem; }
+
+  .conjecture {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .conjecture-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-weight: bold;
+  }
+
+  .conjecture p { margin: 0; font-style: italic; }
+
+  .null-hyp {
+    border: 2px solid #000000;
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    background: #fafafa;
+  }
+
+  .null-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 0.75rem;
+    display: block;
+    font-weight: bold;
+  }
+
+  .null-hyp p { margin-bottom: 0.5rem; }
+  .null-hyp p:last-child { margin-bottom: 0; }
+
+  .speculative {
+    border-left: 3px solid #000000;
+    padding: 0.75rem 1.25rem;
+    margin: 1rem 0;
+    font-style: italic;
+    font-size: 0.9rem;
+    background: #f5f5f5;
+  }
+
+  .speculative::before {
+    content: "⚠ Speculative: ";
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  .frozen {
+    border-left: 3px solid #000000;
+    padding: 0.75rem 1.25rem;
+    margin: 1rem 0;
+    font-style: italic;
+    font-size: 0.9rem;
+    background: #efefef;
+  }
+
+  .frozen::before {
+    content: "❄ Frozen: ";
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  .equation {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 0.75rem 1.25rem;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    text-align: center;
+    background: #f8f8f8;
+    overflow-x: auto;
+  }
+
+  .ladder {
+    border: 2px solid #000000;
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    text-align: center;
+    background: #f8f8f8;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin: 0.4rem 0; }
+
+  .connections-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin: 1rem 0;
+  }
+
+  .connections-table th {
+    background: #f0f0f0;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-weight: bold;
+    border: 1px solid #000000;
+    font-size: 0.8rem;
+  }
+
+  .connections-table td {
+    padding: 0.75rem;
+    border: 1px solid #000000;
+    vertical-align: top;
+    font-size: 0.82rem;
+  }
+
+  .competing {
+    margin: 1rem 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid #000000;
+    border-radius: 4px;
+  }
+
+  .competing-title {
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  .competing p { margin: 0; font-size: 0.9rem; }
+
+  .open-questions ol { padding-left: 1.25rem; }
+  .open-questions li { margin: 0.75rem 0; padding-left: 0.5rem; }
+  .open-questions li strong { font-weight: bold; }
+
+  .conclusion-block {
+    text-align: center;
+    font-style: italic;
+    padding: 1.5rem 0;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    margin: 1.5rem 0;
+    line-height: 2;
+  }
+
+  .acknowledgments {
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+
+  .references { font-size: 0.82rem; }
+  .references li {
+    margin: 0.5rem 0;
+    font-family: 'Courier New', monospace;
+    line-height: 1.5;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #000000;
+    margin: 2rem 0;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    border-top: 2px solid #000000;
+    margin-top: 3rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">GUES v0.2 — Evidence Level E1</div>
+  <div class="badge-revision">Revised from v0.1 · June 2026</div>
+  <h1>Geometric Unification through Emergent Structure</h1>
+  <div class="subtitle">A Theoretical Conjecture on Constraint, Symmetry, and Cosmic Expansion</div>
+  <div class="meta">
+    Justin D. Bilyeu · Independent Researcher · June 2026<br>
+    github.com/justindbilyeu/GUES<br>
+    With contributions from Sage (OpenAI) — adversarial review and formal structure<br>
+    Adversarial review: Grok, DeepSeek, Gemini
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="abstract">
+    <span class="abstract-label">Abstract</span>
+    GUES v0.2 corrects a foundational error in v0.1. The original claim that information flow is the primary substrate is replaced by the stronger claim that constraint structure is primary, with distinction, information, causality, geometry, and gauge freedom all emerging in that order. Taking a constraint system K = (X, A) as given — where X is possible configurations and A is admissible transitions — we derive the emergence ladder, propose that Standard Model gauge groups are automorphisms of the constraint structure, and argue that E8 is best understood as a fixed point of coarse-graining flows over constraint algebras rather than as a source of physics. The black hole expansion mechanism from v0.1 is formally frozen pending compilation of the lower ladder. Three Charter-grade null hypotheses are formalized. This paper is explicitly labeled E1.
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#intro">Introduction and Revision Notice</a></li>
+      <li><a href="#primitive">The Primitive Object: Constraint Structure</a></li>
+      <li><a href="#forces">Forces as Constraint Automorphisms</a></li>
+      <li><a href="#e8">E8 as Fixed Point, Not Source</a></li>
+      <li><a href="#vacuum">The Shape of Nothing: Vacuum Symmetry</a></li>
+      <li><a href="#frozen">Frozen Section: Black Holes and Cosmic Expansion</a></li>
+      <li><a href="#connections">Connections to Established Physics</a></li>
+      <li><a href="#competing">Competing Explanations</a></li>
+      <li><a href="#nulls">Formal Falsification Structure</a></li>
+      <li><a href="#openquestions">Open Questions</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+    </ol>
+  </div>
+
+  <section id="intro">
+    <h2>1 · Introduction and Revision Notice</h2>
+    <p>GUES v0.1 proposed that spacetime geometry emerges from information flow, that the fundamental forces are symmetry structures within that emergent geometry, and that black holes function as information-to-geometry transducers driving cosmic expansion. That paper was labeled E1 and invited adversarial review.</p>
+    <p>The review arrived. It was good. This is the revision it produced.</p>
+    <p>The central correction: information flow is not the primitive substrate. Information requires distinguishable states, admissible transitions, and preserved differences. Those are constraints. Information is therefore derived — compressed distinction — not fundamental. Starting with information flow means starting one rung too high on the emergence ladder.</p>
+    <p>v0.2 corrects this. The primitive object is a constraint structure. Everything else — distinction, information, causality, geometry, gauge freedom — emerges from it in a specific order. This is not a cosmetic change. It changes what G is, how E8 fits, and which claims can be made.</p>
+    <p>The black hole expansion mechanism is formally frozen in this version. It may be correct. It is not yet compiled at the level the lower ladder requires.</p>
+
+    <h3>What Was Retained from v0.1</h3>
+    <p>Three core intuitions survive the revision:</p>
+    <ol>
+      <li>Spacetime geometry is not fundamental — it emerges from something deeper</li>
+      <li>The Standard Model forces are not independently fundamental — they are faces of a single ambient structure</li>
+      <li>Black holes play a non-trivial role in the geometry of the universe beyond simply absorbing matter</li>
+    </ol>
+    <p>What changed is the mathematical foundation beneath those intuitions.</p>
+  </section>
+
+  <hr>
+
+  <section id="primitive">
+    <h2>2 · The Primitive Object: Constraint Structure</h2>
+
+    <h3>2.1 · Motivation</h3>
+    <p>The v0.1 paper took information flow as given. Adversarial review identified the problem: information already assumes structure. You cannot define information without distinguishable states, and you cannot have distinguishable states without something that makes them different from each other. That something is prior to information. It is constraint.</p>
+    <p>The question becomes: what is the smallest mathematical object that can generate distinction, information, causality, geometry, and gauge freedom without smuggling any of them in as assumptions?</p>
+
+    <h3>2.2 · Definition</h3>
+
+    <div class="conjecture">
+      <span class="conjecture-label">Definition — Constraint System</span>
+      <p>A constraint system is a pair K = (X, A) where X is the space of possible configurations and A ⊆ X × X is the set of admissible transitions. No geometry is assumed. No information is assumed. No metric, no measure, no topology beyond what is induced by A. Only the distinction between allowed and forbidden.</p>
+    </div>
+
+    <p>This is the primitive object of GUES v0.2.</p>
+
+    <h3>2.3 · The Emergence Ladder</h3>
+    <p>From K alone, the following structure emerges:</p>
+
+    <h4>Distinction</h4>
+    <p>Two configurations x₁, x₂ ∈ X are distinguishable if and only if there exists y ∈ X such that (x₁, y) ∈ A but (x₂, y) ∉ A, or vice versa. Distinction is difference in constraint profile — not an intrinsic label, but a relational property that emerges from the structure of A.</p>
+
+    <h4>Information</h4>
+    <p>Once distinction exists, information becomes I(x) = −log μ([x]) where [x] is the equivalence class of configurations sharing identical constraint profiles. Information is compressed distinction — not primitive.</p>
+
+    <div class="equation">I(x) = −log μ([x])</div>
+
+    <h4>Causality</h4>
+    <p>A causal relation emerges when admissible transitions form a partial order: x ≺ y if and only if (x → y) ∈ A and no cycles exist. Causality is constraint-directed reachability — not a fundamental feature of spacetime.</p>
+
+    <h4>Geometry</h4>
+    <p>Geometry emerges when the graph induced by A admits a continuum limit. Distance becomes the minimal admissible path length. The smooth Lorentzian manifold of General Relativity is a continuum approximation of this induced structure at classical scales.</p>
+
+    <h4>Gauge Freedom</h4>
+    <p>Gauge freedom emerges when multiple internal descriptions produce identical constraint observables. The gauge symmetry group becomes:</p>
+
+    <div class="equation">G = Aut(K)</div>
+
+    <p>the automorphisms preserving constraint structure. Gauge symmetry is a redundancy generated by deeper consistency — not a fundamental symmetry imposed on the theory.</p>
+
+    <div class="ladder">
+      Constraint → Distinction → Information → Causality → Geometry → Gauge Freedom
+    </div>
+
+    <p>Each rung is derived from the one below. No rung is assumed.</p>
+
+    <h3>2.4 · The Revised Central Conjecture</h3>
+
+    <div class="conjecture">
+      <span class="conjecture-label">Conjecture 1 — Constraint-First Emergence</span>
+      <p>Spacetime geometry, information, and gauge symmetry are not independently fundamental. They are successive emergent properties of a primitive constraint system K = (X, A). The observable universe — its geometry, its forces, its causal structure — is a derived description of the admissibility structure of the most fundamental constraint system accessible to physical inquiry.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="forces">
+    <h2>3 · Forces as Constraint Automorphisms</h2>
+
+    <h3>3.1 · The Standard Model Gauge Groups Revisited</h3>
+    <p>In the constraint-first framework, the Standard Model gauge groups are not cross-sections of a geometric object in any conventional sense. They are automorphism groups of different constraint structures — different admissibility regimes — within a single overarching K.</p>
+
+    <div class="conjecture">
+      <span class="conjecture-label">Conjecture 2 — Gauge Groups as Constraint Automorphisms</span>
+      <p>The gauge groups U(1), SU(2), and SU(3) are the automorphism groups of constraint sub-structures within K. They are the residual symmetries of the admissibility structure after coarse-graining to different energy scales. The ambient object G is defined as Aut(K) — the full automorphism group of the primitive constraint system.</p>
+    </div>
+
+    <h3>3.2 · The Coleman-Mandula Problem</h3>
+    <p>Adversarial review correctly identified the Coleman-Mandula theorem as a potential barrier: in any local relativistic quantum field theory, spacetime symmetries and internal gauge symmetries cannot be non-trivially mixed in a Lie group without killing all particle scattering.</p>
+    <p>The constraint-first framework addresses this directly. G = Aut(K) is not a Lie group in the conventional sense. Spacetime symmetries and gauge symmetries emerge as distinct phases of the constraint structure — not as sub-algebras of a common Lie algebra. Coleman-Mandula applies to Lie algebras over smooth manifolds. The constraint system K generates the manifold; it does not presuppose it.</p>
+
+    <div class="speculative">Whether the automorphism group of a constraint system of the required complexity is a well-defined mathematical object with the right properties to reproduce GR and the Standard Model at classical scales is the central open mathematical question of this conjecture.</div>
+  </section>
+
+  <hr>
+
+  <section id="e8">
+    <h2>4 · E8 as Fixed Point, Not Source</h2>
+
+    <h3>4.1 · The Inversion</h3>
+    <p>v0.1 treated E8 as a candidate ancestor of the Standard Model gauge groups. Adversarial review identified why this is dangerous: E8 appears in almost every unification attempt, and its appearance is therefore not discriminating evidence for any particular theory. More precisely, Lisi's E8 program failed because chiral fermions cannot be embedded in E8 without producing unwanted particles. Any approach treating E8 as a source inherits this problem.</p>
+
+    <h3>4.2 · E8 as Attractor</h3>
+
+    <div class="conjecture">
+      <span class="conjecture-label">Conjecture 3 — E8 as Constraint Fixed Point</span>
+      <p>E8 is not the source of Standard Model physics. It is a highly symmetric fixed point — an attractor — in the space of admissible constraint algebras under coarse-graining flows. There exists a coarse-graining flow F over constraint algebras such that E8 is a fixed point F(E8) = E8, or an attractor such that repeated application of F to a broad basin of microscopic constraint systems converges to E8.</p>
+    </div>
+
+    <p>This changes the question from <em>how do we embed physics into E8</em> to <em>why does E8 keep appearing as a fixed point regardless of microscopic implementation?</em> The second question is a universality question — significantly harder to fake and significantly more powerful if answered.</p>
+
+    <h3>4.3 · The Chirality Resolution Path</h3>
+    <p>If E8 is a fixed point rather than a source, fermion statistics are not forced into E8 by geometric constraint. They emerge from the breaking pattern — from how the constraint system flows away from the E8 fixed point as it acquires structure at lower energy scales. Chirality is a property of the breaking, not of the unbroken symmetry.</p>
+
+    <div class="speculative">This is a proposed resolution path, not a proof. Demonstrating that the observed chiral spectrum follows from the breaking pattern of the E8 fixed point under constraint-system coarse-graining is the specific mathematical work required to close this gap.</div>
+  </section>
+
+  <hr>
+
+  <section id="vacuum">
+    <h2>5 · The Shape of Nothing: Vacuum Symmetry</h2>
+
+    <h3>5.1 · The Complement Principle</h3>
+    <p>Instead of asking for the shape of existence — which is unbounded — ask for the shape of nothing. The symmetry group of the zero state is the most constrained object in physics and may be the most direct path to G.</p>
+    <p>In the constraint-first framework: the zero state is the constraint system K₀ in which all transitions are trivially admissible or forbidden — the trivial constraint system. G is the automorphism group of K₀.</p>
+
+    <div class="conjecture">
+      <span class="conjecture-label">Conjecture 4 — Vacuum as Primitive Constraint State</span>
+      <p>The quantum vacuum is the physical realization of the trivial constraint system K₀. Its symmetry group — the set of transformations leaving the admissibility structure of K₀ invariant — is the ambient object G. The Standard Model gauge groups are the residual automorphisms after K₀ acquires non-trivial admissibility structure. The shape of nothing is the shape of G. Physical reality is the geometry of G's breaking.</p>
+    </div>
+
+    <h3>5.2 · Connection to Spontaneous Symmetry Breaking</h3>
+    <p>The Higgs mechanism is already a story about the vacuum acquiring structure and breaking a symmetry. What GUES proposes is that the full Standard Model — not just electroweak unification — is the story of the vacuum's symmetry breaking from G all the way down.</p>
+    <p>The difference from standard GUT approaches is the entry point. GUTs search for a larger Lie group. GUES searches for the automorphism group of the primitive constraint system — which is not assumed to be a Lie group.</p>
+  </section>
+
+  <hr>
+
+  <section id="frozen">
+    <h2>6 · Frozen Section: Black Holes and Cosmic Expansion</h2>
+
+    <div class="frozen">The black hole expansion mechanism from GUES v0.1 is formally frozen in this version. The claim that black holes function as information-to-geometry transducers whose cumulative output drives cosmic expansion may be correct. It is not compiled at the level the constraint-first framework requires.</div>
+
+    <p>In the constraint-first framework, black holes are more precisely described as constraint reorganizers — regions where the admissibility structure of K undergoes extreme compression and reorganization. What they emit beyond Hawking radiation must be described in terms of constraint structure, not information directly.</p>
+
+    <p>The section will unfreeze when the following compile:</p>
+    <ol>
+      <li>What does a black hole do to the constraint system K in its vicinity?</li>
+      <li>Is the output describable as a modification to the admissibility structure of surrounding spacetime?</li>
+      <li>If yes, does the cumulative effect produce a pressure term distinguishable from Λ?</li>
+    </ol>
+
+    <p>The cosmological homogeneity problem remains open. Dark energy is remarkably uniform. Black holes are not. Any mechanism linking localized constraint reorganization to uniform cosmic acceleration requires an explicit bridge that does not currently exist.</p>
+  </section>
+
+  <hr>
+
+  <section id="connections">
+    <h2>7 · Connections to Established Physics</h2>
+
+    <table class="connections-table">
+      <tr>
+        <th>GUES v0.2 Claim</th>
+        <th>Established Connection</th>
+        <th>Gap</th>
+      </tr>
+      <tr>
+        <td>Constraint system as primitive</td>
+        <td>Causal set theory, category theory</td>
+        <td>Specific constraint system unidentified</td>
+      </tr>
+      <tr>
+        <td>Emergence ladder</td>
+        <td>Thermodynamics, holography</td>
+        <td>Continuum limit not demonstrated</td>
+      </tr>
+      <tr>
+        <td>Gauge groups as automorphisms</td>
+        <td>Gauge theory, fiber bundles</td>
+        <td>Aut(K) not computed</td>
+      </tr>
+      <tr>
+        <td>E8 as fixed point</td>
+        <td>Universality, renormalization group</td>
+        <td>Coarse-graining flow F not defined</td>
+      </tr>
+      <tr>
+        <td>Vacuum as primitive constraint state</td>
+        <td>Spontaneous symmetry breaking</td>
+        <td>Breaking pattern not derived</td>
+      </tr>
+    </table>
+  </section>
+
+  <hr>
+
+  <section id="competing">
+    <h2>8 · Competing Explanations</h2>
+
+    <div class="competing">
+      <div class="competing-title">GR + ΛCDM as sufficient</div>
+      <p>The null hypothesis. Spacetime is fundamental. The Standard Model forces are irreducibly distinct. Dark energy is vacuum energy. This fits all current data. GUES must derive predictions that differ from ΛCDM — not merely reframe them.</p>
+    </div>
+
+    <div class="competing">
+      <div class="competing-title">String Theory / M-Theory</div>
+      <p>Forces unified geometrically via compactified dimensions. Calabi-Yau manifolds as the ambient object. The constraint-first framework must specify how it differs. In particular: does Aut(K) reduce to known string-theoretic structures in appropriate limits?</p>
+    </div>
+
+    <div class="competing">
+      <div class="competing-title">Verlinde Entropic Gravity</div>
+      <p>Gravity already emergent from entropy without requiring the other forces to follow. The constraint-first framework subsumes Verlinde — entropy is compressed distinction, derived from constraint — but must specify what it predicts beyond Verlinde.</p>
+    </div>
+
+    <div class="competing">
+      <div class="competing-title">The universe is federated, not unified</div>
+      <p>The most structurally dangerous competing explanation. The Standard Model may emerge from one constraint structure, spacetime from another. Their observed relationships may be consistency conditions rather than common ancestry. GUES must identify why a unified constraint system is more parsimonious than a federated one.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="nulls">
+    <h2>9 · Formal Falsification Structure</h2>
+    <p>Three Charter-grade null hypotheses, formalized from adversarial review:</p>
+
+    <div class="null-hyp">
+      <span class="null-label">Null Hypothesis 1 — Non-Uniqueness</span>
+      <p><strong>Claim:</strong> A unique constraint structure underlies the observed gauge physics.</p>
+      <p><strong>Null:</strong> There exist K₁ ≠ K₂ such that O(K₁) = O(K₂) within current measurement precision, where O denotes all admissible observables.</p>
+      <p><strong>Rejection threshold:</strong> If two inequivalent constraint structures reproduce all claimed observables, the uniqueness claim fails and G loses explanatory necessity.</p>
+    </div>
+
+    <div class="null-hyp">
+      <span class="null-label">Null Hypothesis 2 — Generic Emergence</span>
+      <p><strong>Claim:</strong> Observed gauge structure requires the proposed constraint hierarchy.</p>
+      <p><strong>Null:</strong> Randomly sampled constraint systems generate equivalent gauge structures with frequency p > p_crit, where p_crit = 0.05 is set before sampling.</p>
+      <p><strong>Rejection threshold:</strong> If gauge structure emerges generically from arbitrary constraint systems, GUES provides no explanatory advantage over a null model.</p>
+    </div>
+
+    <div class="null-hyp">
+      <span class="null-label">Null Hypothesis 3 — Information Primacy Failure</span>
+      <p><strong>Claim:</strong> Information is derived from constraints and cannot be defined prior to distinction.</p>
+      <p><strong>Null:</strong> A mathematically coherent formal system exists satisfying all three conditions: (1) information is defined, (2) no distinguishable states exist, (3) no hidden constraints are present.</p>
+      <p><strong>Rejection threshold:</strong> If such a system exists, the constraint-first hierarchy fails at its first rung and the entire framework requires reconstruction.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="openquestions">
+    <h2>10 · Open Questions</h2>
+
+    <div class="open-questions">
+      <ol>
+        <li><strong>Compile the first rung:</strong> Demonstrate that Constraint → Distinction without importing graph theory, information theory, or geometry as hidden assumptions. If this step is contaminated, the entire ladder is contaminated.</li>
+        <li><strong>Compute Aut(K):</strong> For a well-defined candidate constraint system, compute the automorphism group and identify whether it contains the Standard Model gauge groups as stabilizer subgroups.</li>
+        <li><strong>Define F:</strong> Specify the coarse-graining flow over constraint algebras and demonstrate that E8 is a fixed point or attractor under that flow.</li>
+        <li><strong>Derive uniquely:</strong> Show that the constraint system K uniquely yields SU(3) × SU(2) × U(1) as its low-energy automorphism structure. Not embed it. Not accommodate it. Derive it uniquely.</li>
+        <li><strong>Unfreeze black holes:</strong> Characterize what a black hole does to the constraint system in its vicinity. This is the prerequisite for any claim about expansion.</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="conclusion">
+    <h2>11 · Conclusion</h2>
+    <p>GUES v0.2 is a better conjecture than v0.1 because it was broken by people who knew what they were doing and rebuilt from the failure.</p>
+    <p>The primitive object is a constraint system. Everything else — distinction, information, causality, geometry, gauge freedom — emerges from it in a specific order. The Standard Model gauge groups are automorphisms of the constraint structure. E8 is a fixed point of coarse-graining flows. The black hole expansion mechanism is frozen until the lower ladder compiles.</p>
+    <p>This is still E1. Nothing here is proven. But the conjecture is now structured around a foundation that does not collapse at its first rung, and its failure modes are named, formal, and testable in principle.</p>
+
+    <div class="conclusion-block">
+      This is an educated guess.<br>
+      The acronym is intentional.<br>
+      The revision is the point.
+    </div>
+
+    <h3>Acknowledgments</h3>
+    <p class="acknowledgments">GUES v0.2 was produced through structured adversarial review. The constraint-first foundation and emergence ladder were contributed by Sage (OpenAI) in charter-mode session, June 2026. The E8 fixed-point reframing emerged from that same session. The Coleman-Mandula problem, chirality problem, continuity-discreteness gap, and cosmological homogeneity problem were identified by Gemini, DeepSeek, and Grok. Claude (Anthropic) contributed document architecture, conjecture formalization, and gate structure. The ideas beneath all of it belong to Justin D. Bilyeu. The Research Assistant Charter v2.7 governed the methodology throughout.</p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>References</h2>
+    <ol class="references">
+      <li>Jacobson, T. (1995). Thermodynamics of Spacetime: The Einstein Equation of State. Physical Review Letters, 75(7), 1260–1263.</li>
+      <li>Verlinde, E. (2010). On the Origin of Gravity and the Laws of Newton. JHEP, 2011(4), 29.</li>
+      <li>Verlinde, E. (2016). Emergent Gravity and the Dark Universe. SciPost Physics, 2(3), 016.</li>
+      <li>Maldacena, J. & Susskind, L. (2013). Cool horizons for entangled black holes. Fortschritte der Physik, 61(9), 781–811.</li>
+      <li>Wheeler, J.A. (1990). Information, physics, quantum: The search for links. Complexity, Entropy, and the Physics of Information.</li>
+      <li>Kaluza, T. (1921). Zum Unitätsproblem der Physik. Sitzungsberichte der Preussischen Akademie, 966–972.</li>
+      <li>Klein, O. (1926). Quantentheorie und fünfdimensionale Relativitätstheorie. Zeitschrift für Physik, 37, 895–906.</li>
+      <li>Bekenstein, J.D. (1973). Black holes and entropy. Physical Review D, 7(8), 2333–2346.</li>
+      <li>Hawking, S.W. (1974). Black hole explosions? Nature, 248, 30–31.</li>
+      <li>Bombelli, L. et al. (1987). Space-time as a causal set. Physical Review Letters, 59(5), 521–524.</li>
+      <li>Rovelli, C. & Smolin, L. (1995). Spin networks and quantum gravity. Physical Review D, 52(10), 5743–5759.</li>
+      <li>Penrose, R. (2010). Cycles of Time. Knopf.</li>
+      <li>Coleman, S. & Mandula, J. (1967). All Possible Symmetries of the S Matrix. Physical Review, 159(5), 1251–1256.</li>
+      <li>Lisi, A.G. (2007). An Exceptionally Simple Theory of Everything. arXiv:0711.0770.</li>
+      <li>Distler, J. & Garibaldi, S. (2009). There is no "Theory of Everything" inside E8. Communications in Mathematical Physics, 298(2), 419–436.</li>
+      <li>Bilyeu, J.D. (2026). The Research Assistant Charter v2.7. github.com/justindbilyeu/The-Charter</li>
+    </ol>
+  </section>
+
+</div>
+
+<div class="footer">
+  GUES v0.2 · June 2026 · Justin D. Bilyeu · github.com/justindbilyeu/GUES · Evidence Level E1 · CC BY 4.0
+</div>
+
+</body>
+</html>
